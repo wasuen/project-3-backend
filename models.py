@@ -10,8 +10,6 @@ class User(UserMixin, Model):
     password = CharField()
 
     class Meta:
-        # when the class object creates an object
-        # we can give it instructions
         database = DATABASE
 
 
