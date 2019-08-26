@@ -20,7 +20,7 @@ def register():
     payload = request.form.to_dict()
     # dict_file = pay_file.to_dict()
     print(payload)
-    print(dict_file)
+    # print(dict_file)
 
     payload['email'].lower()
     try:
