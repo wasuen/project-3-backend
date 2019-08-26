@@ -27,7 +27,7 @@ def load_user(userid):
         return None
 
 
-CORS(user, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(dogs_api, origins=["http://localhost:3000", "http://reactaddress.com"], supports_credentials=True)
 
 app.register_blueprint(user)
 
