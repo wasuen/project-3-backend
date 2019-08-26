@@ -13,15 +13,11 @@ class User(UserMixin, Model):
         database = DATABASE
 
 
-# class (Model):
-#     name = CharField()
-#     owner = CharField()
-#     breed = CharField()
-#     user = ForeignKeyField(User, backref='dogs')
-#     created_at = DateTimeField(default=datetime.datetime.now)
-
-#     class Meta:
-#         database = DATABASE
+class items(Model):
+    name = CharField()
+    submittedBy = CharField()
+    user = ForeignKeyField(User, backref='dogs')
+    created_at = DateTimeField(default=datetime.datetime.now)
 
 
 def initialize():

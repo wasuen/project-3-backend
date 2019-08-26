@@ -62,27 +62,20 @@ def logout():
   logout_user()
   return jsonify(status={"code": 200, "message": "logged out"})
 
-# @user.route('/login', methods=["GET"])
-# def login():
-#     print(request)
-#     print(type(request))
-#     payload = request.form.to_dict()
-#     dict_file = pay_file.to_dict()
-#     print(payload)
-#     print(dict_file)
+@user.route('<id>/items', methods=["GET"])
+def get_user_items(id):
 
-#     payload['email'].lower()
-#     try:
-#         models.User.get(models.User.email == payload['email'])
-#         return jsonify(data={}, status={"code": 401, "message": "A user with that name or email exists"})
-#     except models.DoesNotExist:
-#         payload['password'] = generate_password_hash(payload['password'])
-#         user = models.User.create(**payload)
-#         print(type(user)) 
-#         login_user(user)
-#         user_dict = model_to_dict(user)
-#         print(user_dict)
-#         print(type(user_dict))
-#         del user_dict['password']
-#         return jsonify(data=user_dict, status={"code": 201, "message": "Success"})
+    user = models.User.get_by_id(id)
+    print(user.items, '.users')
+
+
+    items = [model_to_dict(item) for item in user.items]
+
+    def delete_key(item, key):
+        del item[key]
+        return item
+
+    item_without_user = [delete_key(item, 'user') for item in items]
+
+    return jsonify(data=dog_without_user, status={"code": 200, "message": "Success"})
 
