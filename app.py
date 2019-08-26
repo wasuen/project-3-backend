@@ -27,7 +27,7 @@ def load_user(userid):
         return None
 
 
-CORS(dogs_api, origins=["http://localhost:3000", "http://reactaddress.com"], supports_credentials=True)
+CORS(dogs_api, origins=["http://localhost:3000", "https://flask-react-project2.herokuapp.com/"], supports_credentials=True)
 
 app.register_blueprint(user)
 
