@@ -1,6 +1,12 @@
 from peewee import *
 from flask_login import UserMixin 
-import datetime 
+import datetime
+
+import os
+
+from playhouse.db_url import connect
+
+DATABASE = connect(os.environ.get('DATABASE_URL'))
 
 DATABASE = SqliteDatabase('users.sqlite')
 
@@ -25,6 +31,4 @@ def initialize():
     DATABASE.create_tables([User], safe=True)
     print("TABLES CREATED")
     DATABASE.close()
-
-
 

@@ -2,6 +2,7 @@ from flask import Flask, g
 from flask_cors import CORS
 from flask_login import LoginManager
 import models
+import os
 
 from api.user import user
 
@@ -26,7 +27,7 @@ def load_user(userid):
         return None
 
 
-CORS(user, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(dogs_api, origins=["http://localhost:3000", "http://reactaddress.com"], supports_credentials=True)
 
 app.register_blueprint(user)
 
@@ -45,6 +46,10 @@ def after_request(response):
 @app.route('/')
 def index():
     return 'hi'
+
+if 'ON_HEROKU' in os.environ:
+    print('hitting ')
+    models.initialize()
 
 if __name__ == '__main__':
     models.initialize()
