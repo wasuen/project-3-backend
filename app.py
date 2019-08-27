@@ -5,7 +5,7 @@ import models
 import os
 
 from api.user import user
-
+from api.item import item
 
 DEBUG = True
 PORT = 8000
@@ -28,9 +28,11 @@ def load_user(userid):
 
 
 CORS(user, origins=["http://localhost:3000", "https://flask-react-project2.herokuapp.com"], supports_credentials=True)
+CORS(item, origins=["http://localhost:3000", "https://flask-react-project2.herokuapp.com"], supports_credentials=True)
+
 
 app.register_blueprint(user)
-
+app.register_blueprint(item)
 
 @app.before_request
 def before_request():
