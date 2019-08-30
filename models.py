@@ -8,7 +8,7 @@ from playhouse.db_url import connect
 
 # DATABASE = connect(os.environ.get('DATABASE_URL'))
 
-DATABASE = SqliteDatabase('users.sqlite')
+DATABASE = SqliteDatabase('usersss.sqlite')
 
 class User(UserMixin, Model):
     username = CharField() 
@@ -20,7 +20,7 @@ class User(UserMixin, Model):
 class Item(Model):
     name = CharField()
     address = CharField()
-    user = ForeignKeyField(User, backref='item')
+    user_id = ForeignKeyField(User, backref='item')
     class Meta:
         database = DATABASE
 
