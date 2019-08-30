@@ -6,24 +6,21 @@ import os
 
 from playhouse.db_url import connect
 
-DATABASE = connect(os.environ.get('DATABASE_URL'))
+# DATABASE = connect(os.environ.get('DATABASE_URL'))
 
-# DATABASE = SqliteDatabase('users.sqlite')
+DATABASE = SqliteDatabase('users.sqlite')
 
 class User(UserMixin, Model):
     username = CharField() 
     email = CharField()
     password = CharField()
-
     class Meta:
         database = DATABASE
-
 
 class Item(Model):
     name = CharField()
     address = CharField()
-    # user = ForeignKeyField(User, backref='dogs')
-    # created_at = DateTimeField(default=datetime.datetime.now)
+    user = ForeignKeyField(User, backref='item')
     class Meta:
         database = DATABASE
 
